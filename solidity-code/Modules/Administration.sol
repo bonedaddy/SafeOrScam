@@ -38,11 +38,6 @@ contract Administration {
         _;
     }
 
-    modifier onlyAdminOrExchange() {
-        require(msg.sender == owner || msg.sender == songTokenExchange || msg.sender == administrator);
-        _;
-    }
-
     modifier onlyModerator() {
         if (msg.sender == owner) {_;}
         if (msg.sender == administrator) {_;}

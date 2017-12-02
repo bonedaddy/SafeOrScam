@@ -4,8 +4,8 @@ pragma solidity 0.4.18;
     Message database for SafeOrDapp
 */
 
-import "./Modules/Administration.sol";
-import "./Math/SafeMath.sol";
+import ".././Modules/Administration.sol";
+import ".././Math/SafeMath.sol";
 
 contract MessageDatabase is Administration {
 
