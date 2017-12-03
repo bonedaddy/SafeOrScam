@@ -39,13 +39,22 @@ contract MessageDatabase is Administration {
         bytes20 reviewType;
     }
 
+    struct ReviewStatistics {
+        address vendorAddress;
+        address submitterAddress;
+        uint256 totalNumberOfReviews;
+        uint256 numberOfPositiveReviews;
+        uint256 numberOfNegativeReviews;
+        uint256 numberOfNeutralReviews;
+    }
+
     /**
         1st address = vendor address
         2nd address = user address
         MessageStruct is a list of all reviews left by this user for this vendor
     */
     mapping (address => mapping (address => MessageStruct[]))   public messages;
-    mapping (address => mapping (address => uint256))           public reviewCounts;
+    mapping (address => mapping (address => ReviewStatistics))           public reviewCounts;
 
     modifier isRegisteredUser(address _userAddress) {
         require(_userAddress != address(0x0));
@@ -99,7 +108,16 @@ contract MessageDatabase is Administration {
         require(checkIfValidReviewType(_reviewType));
         MessageStruct memory m = MessageStruct({submitterAddress: msg.sender, vendorHash: _vendorHash, blockSubmittedAt: block.number, submissionDate: now, ipfsMessageHash: _ipfsMessageHash, rawMessage: _rawMessage, reviewType: _reviewType});
         messages[_vendorAddress][msg.sender].push(m);
-        reviewCounts[_vendorAddress][msg.sender] = messages[_vendorAddress][msg.sender].length;
+        if (_reviewType == reviewTypes[0]) { //positive
+            reviewCounts[_vendorAddress][msg.sender].numberOfPositiveReviews = reviewCounts[_vendorAddress][msg.sender].numberOfPositiveReviews.add(1);
+        } else if (_reviewType == reviewTypes[1]) { // negative
+            reviewCounts[_vendorAddress][msg.sender].numberOfNegativeReviews = reviewCounts[_vendorAddress][msg.sender].numberOfNegativeReviews.add(1);
+        } else if (_reviewType == reviewTypes[2]) { // neutral
+            reviewCounts[_vendorAddress][msg.sender].numberOfNeutralReviews = reviewCounts[_vendorAddress][msg.sender].numberOfNeutralReviews.add(1);
+        } else {
+            return false;
+        }
+        reviewCounts[_vendorAddress][msg.sender].totalNumberOfReviews = reviewCounts[_vendorAddress][msg.sender].totalNumberOfReviews.add(1);
         // event placeholder
         return true;
     }
