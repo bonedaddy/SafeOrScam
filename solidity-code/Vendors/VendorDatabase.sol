@@ -21,7 +21,8 @@ contract VendorDatabase is Administration {
         bool    accountEnabled;
     }
 
-    mapping (address => VendorStruct) public vendors;
+    mapping (address => VendorStruct) public    vendors;
+    mapping (address => mapping (bytes20 => bool))      public    vendorHashes;
 
     modifier isVendorAccount(address _vendorAddress) {
         require(_vendorAddress != address(0x0));
@@ -165,5 +166,17 @@ contract VendorDatabase is Administration {
         returns (bool)
     {
         return vendors[_vendorAddress].accountEnabled;
+   }
+
+    function checkIfValidVendorHash(
+        address _vendorAddress,
+        bytes20 _vendorHash
+    )
+        public
+        view
+        returns (bool)
+    {
+        return vendorHashes[_vendorAddress][_vendorHash];
     }
+    
 }
