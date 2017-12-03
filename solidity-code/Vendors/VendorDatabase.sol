@@ -7,7 +7,8 @@ contract VendorDatabase is Administration {
 
     using SafeMath for uint;
 
-    uint256     constant    public  VENDORFEE = 0;
+    uint256         constant    public  VENDORFEE = 0;
+    address[]                   public  vendorAddresses;
 
     struct VendorStruct {
         address vendorAddress;
@@ -26,10 +27,10 @@ contract VendorDatabase is Administration {
         _;
     }
 
-    function () payable (
+    function () payable {
         require(registerVendorAccount());
-    )
-    
+    }
+
     function registerVendorAccount()
         public
         payable
@@ -45,6 +46,33 @@ contract VendorDatabase is Administration {
         return true;
     }
 
+    function getActiveVendorAccounts()
+        public
+        view
+        returns (address[])
+    {
+        address[] memory a;
+        for (uint i = 0; i < vendorAddresses.length; i++) {
+            if (vendors[vendorAddresses[i]].accountEnabled) {
+                a[i] = vendorAddresses[i];
+            }
+        }
+        return a;
+    }
+
+    function getInactiveVendorAccounts()
+        public
+        view
+        returns (address[])
+    {
+        address[] memory a;
+        for (uint i = 0; i < vendorAddresses.length; i++) {
+            if (!vendors[vendorAddresses[i]].accountEnabled) {
+                a[i] = vendorAddresses[i];
+            }
+        }
+        return a;
+    }
     function getVendorHash(
         address _vendorAddress
     )
