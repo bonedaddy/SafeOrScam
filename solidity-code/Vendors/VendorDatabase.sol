@@ -49,6 +49,23 @@ contract VendorDatabase is Administration {
         return true;
     }
 
+    /**
+        @dev Going to move this off-chain in the future
+    */
+    function checkVendorsForInactivity()
+        public
+        onlyAdmin
+        returns (bool checked)
+    {
+        uint256 _maxDate;
+        for (uint i = 0; i < vendorAddresses.length; i++) {
+            _maxDate = vendors[vendorAddresses[i]].dateOfLastActivity + DEFAULTINACTIVITYPERIOD;
+            if (now > _maxDate) {vendors[vendorAddresses[i]].accountEnabled = false;}
+        }
+        return true;
+    }
+    /**GETTERS */
+
     function getActiveVendorAccounts()
         public
         view
