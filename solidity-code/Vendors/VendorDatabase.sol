@@ -23,6 +23,12 @@ contract VendorDatabase is Administration {
 
     mapping (address => VendorStruct) public vendors;
 
+    modifier isVendorAccount(address _vendorAddress) {
+        require(_vendorAddress != address(0x0));
+        require(vendors[_vendorAddress].accountEnabled);
+        _;
+    }
+
     modifier isNotVendorAccount(address _vendorAddress) {
         require(_vendorAddress != address(0x0));
         require(!vendors[_vendorAddress].accountEnabled);
@@ -49,6 +55,24 @@ contract VendorDatabase is Administration {
         return true;
     }
 
+    /**
+        @dev Used to update vendor account last activity
+    */
+    function updateVendorLastActivity(
+        address _vendorAddress,
+        uint256 _dateOfLastActivity
+    )
+        public
+        onlyAdmin
+        isVendorAccount(_vendorAddress)
+        returns (bool updated)
+    {
+        require(_dateOfLastActivity > 0);
+        vendors[_vendorAddress].dateOfLastActivity = _dateOfLastActivity;
+        // event placeholder
+        return true;
+    }
+    
     /**
         @dev Going to move this off-chain in the future
     */
