@@ -8,6 +8,7 @@ contract VendorDatabase is Administration {
     using SafeMath for uint;
 
     uint256         constant    public  VENDORFEE = 0;
+    uint256         constant    public  DEFAULTINACTIVITYPERIOD = 30 days;
     address[]                   public  vendorAddresses;
 
     struct VendorStruct {
@@ -16,6 +17,7 @@ contract VendorDatabase is Administration {
         uint256 numberOfPositiveReviews;
         uint256 numberOfNegativeReviews;
         uint256 numberOfNeutralReviews;
+        uint256 dateOfLastActivity;
         bool    accountEnabled;
     }
 
@@ -42,6 +44,7 @@ contract VendorDatabase is Administration {
         vendors[msg.sender].vendorAddress = msg.sender;
         vendors[msg.sender].vendorHash = _vendorHash;
         vendors[msg.sender].accountEnabled = true;
+        vendors[msg.sender].dateOfLastActivity = now;
         // event placeholder
         return true;
     }
