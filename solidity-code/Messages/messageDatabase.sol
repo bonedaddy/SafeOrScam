@@ -24,6 +24,7 @@ contract MessageDatabase is Administration {
     using SafeMath for uint;
     UserDatabaseInterface public userdatabaseInterface;
     VendorDatabaseInterface public vendordatabaseInterface;
+    bytes20[]       public reviewTypes;
 
     struct MessageStruct {
         address submitterAddress;
@@ -35,6 +36,7 @@ contract MessageDatabase is Administration {
         string  ipfsMessageHash;
         // until ipfs backend is in place, we will store the message contents within the contract
         string  rawMessage;
+        bytes20 reviewType;
     }
 
     /**
@@ -59,11 +61,33 @@ contract MessageDatabase is Administration {
     }
     function MessageDatabase() {
         administrationContractFrozen = false;
+        bytes20 _positive = ripemd160("positive");
+        bytes20 _negative = ripemd160("negaitve");
+        bytes20 _neutral = ripemd160("neutral");
+        reviewTypes[0] = _positive;
+        reviewTypes[1] = _negative;
+        reviewTypes[2] = _neutral;
+    }
+
+
+    function checkIfValidReviewType(
+        bytes20 _reviewType
+    )
+        public
+        view
+        returns (bool)
+    {
+        if (_reviewType == reviewTypes[0] || _reviewType == reviewTypes[1] || _reviewType == reviewTypes[2]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function submitMessage(
         address _vendorAddress,
         bytes20 _vendorHash,
+        bytes20 _reviewType,
         string _ipfsMessageHash,
         string _rawMessage
     )
@@ -72,7 +96,8 @@ contract MessageDatabase is Administration {
         isValidVendorHash(_vendorAddress, _vendorHash)
         returns (bool submitted)
     {
-        MessageStruct memory m = MessageStruct({submitterAddress: msg.sender, vendorHash: _vendorHash, blockSubmittedAt: block.number, submissionDate: now, ipfsMessageHash: _ipfsMessageHash, rawMessage: _rawMessage});
+        require(checkIfValidReviewType(_reviewType));
+        MessageStruct memory m = MessageStruct({submitterAddress: msg.sender, vendorHash: _vendorHash, blockSubmittedAt: block.number, submissionDate: now, ipfsMessageHash: _ipfsMessageHash, rawMessage: _rawMessage, reviewType: _reviewType});
         messages[_vendorAddress][msg.sender].push(m);
         reviewCounts[_vendorAddress][msg.sender] = messages[_vendorAddress][msg.sender].length;
         // event placeholder
