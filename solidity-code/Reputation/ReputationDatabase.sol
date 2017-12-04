@@ -2,42 +2,13 @@ pragma solidity 0.4.18;
 
 import "../Modules/Administration.sol";
 import "../Math/SafeMath.sol";
-
+import "../Math/SafeMathInt.sol";
 
 interface MessageDatabaseInterface {
-        function getTotalNumberOfReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint256)
-    {
-        return vendors[_vendorAddress].totalNumberOfReviews;
-    }
-
-    function getNumberOfPositiveReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint256)
-    {
-        return vendors[_vendorAddress].numberOfPositiveReviews;
-    }
-
-    function getNumberOfNegativeReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint256)
-    {
-        return vendors[_vendorAddress].numberOfNegativeReviews;
-    }
-
-    function getNumberOfNeutralReviews(
-        address _vendorAddress
-    ) public view returns (uint256);
+    function getTotalNumberOfReviews(address _vendorAddress) public view returns (uint256);
+    function getNumberOfPositiveReviews(address _vendorAddress) public view returns (uint256);
+    function getNumberOfNegativeReviews(address _vendorAddress) public view returns (uint256);
+    function getNumberOfNeutralReviews(address _vendorAddress) public view returns (uint256);
 }
 contract ReputationDatabase is Administration {
 

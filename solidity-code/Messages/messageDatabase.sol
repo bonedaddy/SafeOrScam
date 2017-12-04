@@ -18,6 +18,10 @@ import ".././Math/SafeMath.sol";
 import "../interfaces/UserDatabaseInterface.sol";
 import "../interfaces/VendorDatabaseInterface.sol";
 
+/**
+
+    NOTE: we want to add in a functionality so that when reputation is being calculated, message submission for a particular vendor is temporarily disabled
+*/
 
 contract MessageDatabase is Administration {
 
