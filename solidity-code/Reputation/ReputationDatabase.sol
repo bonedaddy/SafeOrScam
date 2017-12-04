@@ -30,7 +30,7 @@ contract ReputationDatabase is Administration {
     function calculateRepuation(
         address _vendorAddress
     )
-        public
+        external
         returns (bool calculated)
     {
         uint128 _numPositiveReviews = messageDatabaseInterface.getNumberOfPositiveReviews(_vendorAddress);
