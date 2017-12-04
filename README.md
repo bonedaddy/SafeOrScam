@@ -1,4 +1,4 @@
-# SafeOrDapp
+# SafeOrScam
 
 SafeorScam but on the blockchain!
 Vendor accounts will not face a sign up fee, but must provide PoE (proof of existence)
