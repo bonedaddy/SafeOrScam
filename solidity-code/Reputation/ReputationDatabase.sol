@@ -46,4 +46,14 @@ contract ReputationDatabase is Administration {
         int128 rep = sumPositiveNegative.add(neutralWeight);
         reputation[_vendorAddress].reputationScore = rep;
     }
+
+    function getReputationForVendor(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (int128)
+    {
+        return reputation[_vendorAddress].reputationScore;
+    }
 }

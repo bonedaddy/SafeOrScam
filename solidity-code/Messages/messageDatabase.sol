@@ -14,7 +14,8 @@ pragma solidity 0.4.18;
 */
 
 import "../Modules/Administration.sol";
-import ".././Math/SafeMath.sol";
+import "../Math/SafeMath.sol";
+import "../Math/SafeMathInt.sol";
 import "../interfaces/UserDatabaseInterface.sol";
 import "../interfaces/VendorDatabaseInterface.sol";
 
@@ -25,7 +26,10 @@ import "../interfaces/VendorDatabaseInterface.sol";
 
 contract MessageDatabase is Administration {
 
-    using SafeMath for uint;
+    using SafeMath for uint128;
+    using SafeMath for uint256;
+    using SafeMathInt for int128;
+    using SafeMathInt for int256;
     UserDatabaseInterface public userdatabaseInterface;
     VendorDatabaseInterface public vendordatabaseInterface;
     bytes20[]       public reviewTypes;
@@ -60,45 +64,6 @@ contract MessageDatabase is Administration {
         uint128 numberOfNeutralReviews;
     }
 
-    function getTotalNumberOfReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint128)
-    {
-        return vendors[_vendorAddress].totalNumberOfReviews;
-    }
-
-    function getNumberOfPositiveReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint128)
-    {
-        return vendors[_vendorAddress].numberOfPositiveReviews;
-    }
-
-    function getNumberOfNegativeReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint128)
-    {
-        return vendors[_vendorAddress].numberOfNegativeReviews;
-    }
-
-    function getNumberOfNeutralReviews(
-        address _vendorAddress
-    )
-        public
-        view
-        returns (uint128)
-    {
-        return vendors[_vendorAddress].numberOfNeutralReviews;
-    }
 
     /**
         1st address = vendor address
@@ -174,4 +139,45 @@ contract MessageDatabase is Administration {
         // event placeholder
         return true;
     }
+
+    function getTotalNumberOfReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint128)
+    {
+        return vendors[_vendorAddress].totalNumberOfReviews;
+    }
+
+    function getNumberOfPositiveReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint128)
+    {
+        return vendors[_vendorAddress].numberOfPositiveReviews;
+    }
+
+    function getNumberOfNegativeReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint128)
+    {
+        return vendors[_vendorAddress].numberOfNegativeReviews;
+    }
+
+    function getNumberOfNeutralReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint128)
+    {
+        return vendors[_vendorAddress].numberOfNeutralReviews;
+    }
+
 }
