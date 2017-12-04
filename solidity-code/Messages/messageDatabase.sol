@@ -48,6 +48,54 @@ contract MessageDatabase is Administration {
         uint256 numberOfNeutralReviews;
     }
 
+    struct GeneralizedReviewStruct {
+        address vendorAddress;
+        uint256 totalNumberOfReviews;
+        uint256 numberOfPositiveReviews;
+        uint256 numberOfNegativeReviews;
+        uint256 numberOfNeutralReviews;
+    }
+
+    function getTotalNumberOfReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint256)
+    {
+        return vendors[_vendorAddress].totalNumberOfReviews;
+    }
+
+    function getNumberOfPositiveReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint256)
+    {
+        return vendors[_vendorAddress].numberOfPositiveReviews;
+    }
+
+    function getNumberOfNegativeReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint256)
+    {
+        return vendors[_vendorAddress].numberOfNegativeReviews;
+    }
+
+    function getNumberOfNeutralReviews(
+        address _vendorAddress
+    )
+        public
+        view
+        returns (uint256)
+    {
+        return vendors[_vendorAddress].numberOfNeutralReviews;
+    }
+
     /**
         1st address = vendor address
         2nd address = user address
@@ -55,6 +103,7 @@ contract MessageDatabase is Administration {
     */
     mapping (address => mapping (address => MessageStruct[]))   public messages;
     mapping (address => mapping (address => ReviewStatistics))           public reviewCounts;
+    mapping (address => GeneralizedReviewStruct)    public vendors;
 
     modifier isRegisteredUser(address _userAddress) {
         require(_userAddress != address(0x0));

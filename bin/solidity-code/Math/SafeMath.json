@@ -1,0 +1,19 @@
+{
+    "abi": "[]",
+    "bytecode": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582078479d86c0e3fa09f9f9c0dbe5c607f67c9cb410be1310113d9d1e571e340f4d0029",
+    "functionHashes": {},
+    "gasEstimates": {
+        "creation": [
+            61,
+            10600
+        ],
+        "external": {},
+        "internal": {
+            "add(int256,int256)": null,
+            "div(int256,int256)": null,
+            "mul(int256,int256)": null,
+            "sub(int256,int256)": null
+        }
+    },
+    "runtimeBytecode": "6060604052600080fd00a165627a7a7230582078479d86c0e3fa09f9f9c0dbe5c607f67c9cb410be1310113d9d1e571e340f4d0029"
+}
