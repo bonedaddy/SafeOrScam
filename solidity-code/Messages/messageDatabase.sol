@@ -46,18 +46,18 @@ contract MessageDatabase is Administration {
     struct ReviewStatistics {
         address vendorAddress;
         address submitterAddress;
-        uint256 totalNumberOfReviews;
-        uint256 numberOfPositiveReviews;
-        uint256 numberOfNegativeReviews;
-        uint256 numberOfNeutralReviews;
+        uint128 totalNumberOfReviews;
+        uint128 numberOfPositiveReviews;
+        uint128 numberOfNegativeReviews;
+        uint128 numberOfNeutralReviews;
     }
 
     struct GeneralizedReviewStruct {
         address vendorAddress;
-        uint256 totalNumberOfReviews;
-        uint256 numberOfPositiveReviews;
-        uint256 numberOfNegativeReviews;
-        uint256 numberOfNeutralReviews;
+        uint128 totalNumberOfReviews;
+        uint128 numberOfPositiveReviews;
+        uint128 numberOfNegativeReviews;
+        uint128 numberOfNeutralReviews;
     }
 
     function getTotalNumberOfReviews(
@@ -65,7 +65,7 @@ contract MessageDatabase is Administration {
     )
         public
         view
-        returns (uint256)
+        returns (uint128)
     {
         return vendors[_vendorAddress].totalNumberOfReviews;
     }
@@ -75,7 +75,7 @@ contract MessageDatabase is Administration {
     )
         public
         view
-        returns (uint256)
+        returns (uint128)
     {
         return vendors[_vendorAddress].numberOfPositiveReviews;
     }
@@ -85,7 +85,7 @@ contract MessageDatabase is Administration {
     )
         public
         view
-        returns (uint256)
+        returns (uint128)
     {
         return vendors[_vendorAddress].numberOfNegativeReviews;
     }
@@ -95,7 +95,7 @@ contract MessageDatabase is Administration {
     )
         public
         view
-        returns (uint256)
+        returns (uint128)
     {
         return vendors[_vendorAddress].numberOfNeutralReviews;
     }

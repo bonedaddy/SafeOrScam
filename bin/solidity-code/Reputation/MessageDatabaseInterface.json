@@ -1,0 +1,16 @@
+{
+    "abi": "[{\"constant\":true,\"inputs\":[{\"name\":\"_vendorAddress\",\"type\":\"address\"}],\"name\":\"getNumberOfNegativeReviews\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_vendorAddress\",\"type\":\"address\"}],\"name\":\"getTotalNumberOfReviews\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_vendorAddress\",\"type\":\"address\"}],\"name\":\"getNumberOfPositiveReviews\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_vendorAddress\",\"type\":\"address\"}],\"name\":\"getNumberOfNeutralReviews\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]",
+    "bytecode": "",
+    "functionHashes": {
+        "getNumberOfNegativeReviews(address)": "4173e0df",
+        "getNumberOfNeutralReviews(address)": "f6958d3c",
+        "getNumberOfPositiveReviews(address)": "e2848729",
+        "getTotalNumberOfReviews(address)": "ba1f1739"
+    },
+    "gasEstimates": {
+        "creation": {},
+        "external": {},
+        "internal": {}
+    },
+    "runtimeBytecode": ""
+}

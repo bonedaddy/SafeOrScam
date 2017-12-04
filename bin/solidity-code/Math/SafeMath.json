@@ -1,6 +1,6 @@
 {
     "abi": "[]",
-    "bytecode": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582078479d86c0e3fa09f9f9c0dbe5c607f67c9cb410be1310113d9d1e571e340f4d0029",
+    "bytecode": "60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820195d79a858f927a58d2cb5dc8a3dea69983894a50e245779f8753b0b9a8b3b850029",
     "functionHashes": {},
     "gasEstimates": {
         "creation": [
@@ -9,11 +9,11 @@
         ],
         "external": {},
         "internal": {
-            "add(int256,int256)": null,
-            "div(int256,int256)": null,
-            "mul(int256,int256)": null,
-            "sub(int256,int256)": null
+            "add(uint128,uint128)": null,
+            "div(uint128,uint128)": null,
+            "mul(uint128,uint128)": null,
+            "sub(uint128,uint128)": null
         }
     },
-    "runtimeBytecode": "6060604052600080fd00a165627a7a7230582078479d86c0e3fa09f9f9c0dbe5c607f67c9cb410be1310113d9d1e571e340f4d0029"
+    "runtimeBytecode": "6060604052600080fd00a165627a7a72305820195d79a858f927a58d2cb5dc8a3dea69983894a50e245779f8753b0b9a8b3b850029"
 }
